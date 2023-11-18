@@ -1,6 +1,8 @@
+import { habits } from "../data/habits.js";
 export const home = (req, res) => {
-  console.log("home");
-  res.render("home",{
-    title:"home"
+  
+  res.render("home", {
+    title: "home",
+    habits: habits
   });
 };

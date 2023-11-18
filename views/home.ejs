@@ -1,17 +1,28 @@
-
 <section>
-    <h1>Welcome to the Home Page</h1>
-    <p>This is a simple Express app using EJS.</p>
-    <!-- Add random content -->
-    <div>
-      <p>Random content specific to the home page.</p>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>
+
+  <%habits.forEach((habit,i)=>{%>
+    <div style="display: flex;flex-direction: column;border: 1px solid black;">
+      <div style="display: flex;flex-direction: row;gap: 80px;color: red;justify-content: center;">
+        <p >
+          <strong>
+            <%=i+1+"."%>
+              <%= habit.name%>
+          </strong>
+        </p>
+        <p style="color: black;">
+          <%=habit.createdAt%>
+        </p>
+
+      </div>
+
+      <br><br>
+      <div id="habit-status" style="display: flex;flex-direction: row;gap: 10px 10px;justify-content: space-around;">
+
+        <p>1 day</p>
+        <p>38/21</p>
+        <p>daily</p>
+      </div>
     </div>
-  </section>
 
-
-  
+    <%})%>
+</section>

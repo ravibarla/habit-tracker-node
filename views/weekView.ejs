@@ -1,0 +1,30 @@
+<h1>week-view</h1>
+<div style="display: flex;flex-direction: column;justify-content: space-around;">
+
+
+    <%habits.forEach(habit=>{%>
+
+        <div style="display: flex;flex-direction: row;">
+            <p style="color: red;">
+                <%= habit.name %>
+            </p>
+
+        </div>
+        <div style="display: flex;flex-direction: row;gap: 30px ;">
+            <%habit.entries.forEach(T=>{%>
+
+                <p>
+                    <%=T.date%>
+                </p>
+                <button>
+                    <%=T.status%>   
+                </button>
+                    
+                
+
+
+                <%})%>
+        </div>
+
+        <%})%>
+</div>

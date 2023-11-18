@@ -1,7 +1,8 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import { router } from "./router/index.js";
 import expressEjsLayouts from "express-ejs-layouts";
 import path from "path";
+// import bodyParser from "body-parser";
 const app = express();
 const port = 3100;
 app.set("view engine", "ejs");
@@ -10,8 +11,11 @@ app.use(expressEjsLayouts);
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
-app.use("/", router);
+app.use(urlencoded({ extended: true }));
 
+app.use(express.json());
 app.listen(port, () => {
   console.log("app is running successfully on port :", port);
 });
+
+app.use("/", router);
