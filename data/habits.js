@@ -6,14 +6,17 @@ let habits = [
     createdAt: new Date().toLocaleString("en-US"),
     entries: [
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
@@ -25,14 +28,17 @@ let habits = [
     createdAt: "2023-10-01 10:00:00 AM",
     entries: [
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
@@ -44,14 +50,17 @@ let habits = [
     createdAt: "2023-10-01 10:00:00 AM",
     entries: [
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
+        id: random(),
         date: new Date().toLocaleDateString(),
         status: "done",
       },
@@ -69,4 +78,19 @@ export const updateHabits = (updatedHabits) => {
 
 export const addHabit = (newHabit) => {
   habits.push(newHabit);
+};
+
+export const updateEntryStatus = (habitId, entryId, newStatus) => {
+  const habitIndex = habits.findIndex((habit) => habit.id == Number(habitId));
+  if (habitIndex) {
+    const entryIndex = habits[habitIndex].entries.findIndex(
+      (entry) => entry.id == Number(entryId)
+    );
+    if (entryIndex) {
+      habits[habitIndex].entries[entryIndex].status = newStatus;
+      console.log(habits[habitIndex].entries[entryIndex].status);
+    }
+  }
+
+  return;
 };

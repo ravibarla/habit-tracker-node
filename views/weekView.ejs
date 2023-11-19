@@ -1,31 +1,25 @@
 <h1>week-view</h1>
-<div style="display: flex;flex-direction: column;justify-content: space-around;">
+<div
+  style="display: flex; flex-direction: column; justify-content: space-around"
+>
+  <%habits.forEach((habit,i)=>{%>
 
+  <div style="display: flex; flex-direction: row">
+    <p><%=i+1+" . " %></p>
+    <p style="color: red"><%= habit.name %></p>
+  </div>
+  <div style="display: flex; flex-direction: row; gap: 30px">
+    <%habit.entries.forEach(T=>{%>
 
-    <%habits.forEach((habit,i)=>{%>
+    <p><%=T.date%></p>
+    <form
+      action="/updateStatus/<%=habit.id%>/<%=T.id%>/<%=T.status%>"
+      method="post"
+    >
+      <button type="submit"><%=T.status%></button>
+    </form>
+    <%})%>
+  </div>
 
-        <div style="display: flex;flex-direction: row;">
-            <p><%=i+1+" . " %></p>
-            <p style="color: red;">
-                <%= habit.name %>
-            </p>
-
-        </div>
-        <div style="display: flex;flex-direction: row;gap: 30px ;">
-            <%habit.entries.forEach(T=>{%>
-
-                <p>
-                    <%=T.date%>
-                </p>
-                <button>
-                    <%=T.status%>   
-                </button>
-                    
-                
-
-
-                <%})%>
-        </div>
-
-        <%})%>
+  <%})%>
 </div>

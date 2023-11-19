@@ -1,4 +1,9 @@
-import { addHabit, getHabits, updateHabits } from "../data/habits.js";
+import {
+  addHabit,
+  getHabits,
+  updateEntryStatus,
+  updateHabits,
+} from "../data/habits.js";
 import random from "../data/randomNumberGenerator.js";
 export const create = (req, res) => {
   return res.render("_create", {
@@ -16,6 +21,7 @@ export const created = (req, res) => {
     ).toLocaleDateString();
     let status = "not done";
     entries.push({
+      id: random(),
       date: entryDate,
       status: status,
     });
@@ -45,4 +51,11 @@ export const deleteHabit = (req, res) => {
   const updatedHabit = habits.filter((habit) => habit.id !== Number(id));
   updateHabits(updatedHabit);
   return res.redirect("/");
+};
+
+export const updateStatus = (req, res) => {
+  const { habitId, entryId, entryStatus } = req.params;
+  let newStatus = String(entryStatus) == "done" ? "not done" : "done";
+  updateEntryStatus(habitId, entryId, newStatus);
+  return res.redirect("/weekView");
 };
