@@ -1,6 +1,5 @@
-import { stat } from "fs";
-import { habits } from "../data/habits.js";
-
+import { addHabit, getHabits, updateHabits } from "../data/habits.js";
+import random from "../data/randomNumberGenerator.js";
 export const create = (req, res) => {
   return res.render("_create", {
     title: "create",
@@ -8,10 +7,10 @@ export const create = (req, res) => {
 };
 
 export const created = (req, res) => {
-  const { habit } = req.body;
+  let { habitName } = req.body;
   const entries = [];
   const today = new Date();
-  for (let i = 0; i < 3; i++) { 
+  for (let i = 0; i < 3; i++) {
     let entryDate = new Date(
       today.setDate(today.getDate() + i)
     ).toLocaleDateString();
@@ -23,19 +22,27 @@ export const created = (req, res) => {
   }
 
   const newHabit = {
-    name: habit,
-    createdAt: new Date().toDateString(),
+    id: random(),
+    name: habitName,
+    createdAt: new Date().toLocaleString("en-US"),
     entries: entries,
   };
-  habits.push(newHabit);
+  addHabit(newHabit);
+
   return res.redirect("/");
 };
 
 export const weekView = (req, res) => {
   return res.render("weekView", {
-    habits: habits,
+    habits: getHabits(),
     title: "week-view",
   });
 };
 
-
+export const deleteHabit = (req, res) => {
+  const habits = getHabits();
+  const { id } = req.params;
+  const updatedHabit = habits.filter((habit) => habit.id !== Number(id));
+  updateHabits(updatedHabit);
+  return res.redirect("/");
+};

@@ -2,9 +2,10 @@
 <div style="display: flex;flex-direction: column;justify-content: space-around;">
 
 
-    <%habits.forEach(habit=>{%>
+    <%habits.forEach((habit,i)=>{%>
 
         <div style="display: flex;flex-direction: row;">
+            <p><%=i+1+" . " %></p>
             <p style="color: red;">
                 <%= habit.name %>
             </p>

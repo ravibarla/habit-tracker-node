@@ -1,7 +1,9 @@
-export const habits = [
+import random from "../data/randomNumberGenerator.js";
+let habits = [
   {
+    id: random(),
     name: "reading",
-    createdAt: "2023-10-01 10:00:00 AM",
+    createdAt: new Date().toLocaleString("en-US"),
     entries: [
       {
         date: new Date().toLocaleDateString(),
@@ -18,6 +20,7 @@ export const habits = [
     ],
   },
   {
+    id: random(),
     name: "writing",
     createdAt: "2023-10-01 10:00:00 AM",
     entries: [
@@ -36,6 +39,7 @@ export const habits = [
     ],
   },
   {
+    id: random(),
     name: "sleeping",
     createdAt: "2023-10-01 10:00:00 AM",
     entries: [
@@ -54,3 +58,15 @@ export const habits = [
     ],
   },
 ];
+
+export const getHabits = () => {
+  return habits;
+};
+
+export const updateHabits = (updatedHabits) => {
+  habits = updatedHabits;
+};
+
+export const addHabit = (newHabit) => {
+  habits.push(newHabit);
+};
