@@ -55,7 +55,10 @@ export const deleteHabit = (req, res) => {
 
 export const updateStatus = (req, res) => {
   const { habitId, entryId, entryStatus } = req.params;
-  let newStatus = String(entryStatus) == "done" ? "not done" : "done";
-  updateEntryStatus(habitId, entryId, newStatus);
-  return res.redirect("/weekView");
+  let newStatus = String(entryStatus) === "done" ? "not done" : "done";
+  const isUpdated = updateEntryStatus(habitId, entryId, newStatus);
+  if (isUpdated) {
+    return res.redirect("/weekView");
+  }
+  return res.send("error in loading page");
 };

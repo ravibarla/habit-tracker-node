@@ -9,15 +9,23 @@
     <p style="color: red"><%= habit.name %></p>
   </div>
   <div style="display: flex; flex-direction: row; gap: 30px">
-    <%habit.entries.forEach(T=>{%>
+    <%habit.entries.forEach(entry=>{%>
 
-    <p><%=T.date%></p>
+    <p><%=entry.date%></p>
     <form
-      action="/updateStatus/<%=habit.id%>/<%=T.id%>/<%=T.status%>"
+      action="/updateStatus/<%=habit.id%>/<%=entry.id%>/<%=entry.status%>"
       method="post"
     >
-      <button type="submit"><%=T.status%></button>
+      <script>
+        function updateClick(e) {
+          e.preventDefault();
+        }
+      </script>
+      <button type="submit" onclick="updateClick(event)">
+        <%=entry.status%>
+      </button>
     </form>
+
     <%})%>
   </div>
 

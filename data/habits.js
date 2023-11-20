@@ -1,66 +1,66 @@
 import random from "../data/randomNumberGenerator.js";
 let habits = [
   {
-    id: random(),
+    id: 1,
     name: "reading",
     createdAt: new Date().toLocaleString("en-US"),
     entries: [
       {
-        id: random(),
+        id: 1,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
-        id: random(),
+        id: 2,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
-        id: random(),
+        id: 3,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
     ],
   },
   {
-    id: random(),
+    id: 2,
     name: "writing",
     createdAt: "2023-10-01 10:00:00 AM",
     entries: [
       {
-        id: random(),
+        id: 1,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
-        id: random(),
+        id: 2,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
-        id: random(),
+        id: 3,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
     ],
   },
   {
-    id: random(),
+    id: 3,
     name: "sleeping",
     createdAt: "2023-10-01 10:00:00 AM",
     entries: [
       {
-        id: random(),
+        id: 1,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
-        id: random(),
+        id: 2,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
       {
-        id: random(),
+        id: 3,
         date: new Date().toLocaleDateString(),
         status: "done",
       },
@@ -81,16 +81,21 @@ export const addHabit = (newHabit) => {
 };
 
 export const updateEntryStatus = (habitId, entryId, newStatus) => {
-  const habitIndex = habits.findIndex((habit) => habit.id == Number(habitId));
-  if (habitIndex) {
-    const entryIndex = habits[habitIndex].entries.findIndex(
-      (entry) => entry.id == Number(entryId)
+  const habits = getHabits();
+  let habitIndex = -1;
+  let entryIndex = -1;
+  habitIndex = habits.findIndex((habit) => habit.id == habitId);
+  if (habitIndex > -1) {
+    entryIndex = habits[habitIndex].entries.findIndex(
+      (entry) => entry.id == entryId
     );
-    if (entryIndex) {
-      habits[habitIndex].entries[entryIndex].status = newStatus;
-      console.log(habits[habitIndex].entries[entryIndex].status);
-    }
+  }
+  if (entryIndex > -1) {
+    habits[habitIndex].entries[entryIndex].status = newStatus;
+    return true;
+  } else {
+    return false;
   }
 
-  return;
+  return false;
 };
