@@ -55,7 +55,14 @@ export const deleteHabit = (req, res) => {
 
 export const updateStatus = (req, res) => {
   const { habitId, entryId, entryStatus } = req.params;
-  let newStatus = String(entryStatus) === "done" ? "not done" : "done";
+  let newStatus = null;
+  if ((entryStatus == "none")) {
+    newStatus = "done";
+  } else if ((entryStatus == "done")) {
+    newStatus = "not done";
+  } else {
+    newStatus = "none";
+  }
   const isUpdated = updateEntryStatus(habitId, entryId, newStatus);
   if (isUpdated) {
     return res.redirect("/weekView");
