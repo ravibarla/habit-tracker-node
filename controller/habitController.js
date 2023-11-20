@@ -19,7 +19,7 @@ export const created = (req, res) => {
     let entryDate = new Date(
       today.setDate(today.getDate() + i)
     ).toLocaleDateString();
-    let status = "not done";
+    let status = "none";
     entries.push({
       id: random(),
       date: entryDate,
