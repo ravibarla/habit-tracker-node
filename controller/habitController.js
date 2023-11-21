@@ -29,7 +29,7 @@ export const created = (req, res) => {
   const today = new Date();
 
   //to create entries of the new habit
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 7; i++) {
     let entryDate = new Date(
       today.setDate(today.getDate() + i)
     ).toLocaleDateString();
