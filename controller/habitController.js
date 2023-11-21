@@ -1,9 +1,3 @@
-import {
-  addHabit,
-  getHabits,
-  updateEntryStatus,
-  updateHabits,
-} from "../data/habits.js";
 import random from "../data/randomNumberGenerator.js";
 import { Habits } from "../model/Habits.js";
 export const create = (req, res) => {
@@ -35,7 +29,17 @@ export const created = (req, res) => {
     entries: entries,
   };
 
-  addHabit(newHabit);
+  // addHabit(newHabit);
+  const habits = new Habits(newHabit);
+
+  habits.save()
+    .then((savedHabit) => {
+      console.log("New habit saved:");
+    })
+    .catch((error) => {
+      console.error("Error saving habit:", error);
+    });
+  // return;
   return res.redirect("/");
 };
 

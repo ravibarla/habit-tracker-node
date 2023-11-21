@@ -14,6 +14,4 @@ router.get("/_create", create);
 router.post("/_create", created);
 router.get("/weekView", weekView);
 router.post("/destroy/:id", deleteHabit);
-
-// router.post("/destroy", deleteHabit);
 router.post("/updateStatus/:habitId/:entryId/:entryStatus", updateStatus);
