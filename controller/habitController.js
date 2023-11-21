@@ -49,8 +49,6 @@ export const weekView = (req, res) => {
 };
 
 export const deleteHabit = (req, res) => {
-  // console.log("inside delete");
-  // res.send("inside delte")
   const { id } = req.params;
   Habits.findOneAndDelete({ id })
     .then((success) => {
@@ -70,9 +68,10 @@ export const updateStatus = (req, res) => {
   } else {
     newStatus = "none";
   }
-  const isUpdated = updateEntryStatus(habitId, entryId, newStatus);
-  if (isUpdated) {
-    return res.redirect("/weekView");
-  }
-  return res.send("error in loading page");
+  Habits.findOneAndUpdate(
+    { id: habitId, "entries.id": entryId },
+    { $set: { "entries.$.status": newStatus } }
+  )
+    .then((success) => res.redirect("/weekView"))
+    .catch((err) => console.log("error :", err));
 };
