@@ -29,9 +29,11 @@
       <p>1 day</p>
       <p>38/21</p>
       <p>daily</p>
-      <a method="post" action="/destroy/<%=habit.id%>">
+      <!-- <a method="post" action="/destroy/<%=habit.id%>"> -->
+        
+      <form method="post" action="/destroy/<%=habit.id%>">
         <button type="submit">Delete</button>
-      </a>
+      </form>
     </div>
   </div>
 

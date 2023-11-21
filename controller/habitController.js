@@ -49,11 +49,15 @@ export const weekView = (req, res) => {
 };
 
 export const deleteHabit = (req, res) => {
-  const habits = getHabits();
+  // console.log("inside delete");
+  // res.send("inside delte")
   const { id } = req.params;
-  const updatedHabit = habits.filter((habit) => habit.id !== Number(id));
-  updateHabits(updatedHabit);
-  return res.redirect("/");
+  Habits.findOneAndDelete({ id })
+    .then((success) => {
+      console.log("successfully deleted");
+      return res.redirect("/");
+    })
+    .catch((err) => console.log("err :", err));
 };
 
 export const updateStatus = (req, res) => {
