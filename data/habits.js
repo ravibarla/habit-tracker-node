@@ -1,4 +1,7 @@
+import exp from "constants";
 import random from "../data/randomNumberGenerator.js";
+import { Habits } from "../model/Habits.js";
+
 let habits = [
   {
     id: 1,
@@ -66,7 +69,7 @@ let habits = [
       },
     ],
   },
-];
+ ];
 
 export const getHabits = () => {
   return habits;
@@ -98,4 +101,17 @@ export const updateEntryStatus = (habitId, entryId, newStatus) => {
   }
 
   return false;
+};
+
+export const saveInMongo = () => {
+  const newHabit = new Habits(
+  );
+  newHabit
+    .save()
+    .then((savedHabit) => {
+      console.log("New habit saved:", savedHabit);
+    })
+    .catch((error) => {
+      console.error("Error saving habit:", error);
+    });
 };

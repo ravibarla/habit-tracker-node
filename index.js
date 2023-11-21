@@ -2,6 +2,9 @@ import express, { urlencoded } from "express";
 import { router } from "./router/index.js";
 import expressEjsLayouts from "express-ejs-layouts";
 import path from "path";
+import { db } from "./config/mongoose.js";
+
+
 // import bodyParser from "body-parser";
 const app = express();
 const port = 3100;
@@ -13,9 +16,14 @@ app.set("layout extractScripts", true);
 
 app.use(urlencoded({ extended: true }));
 
+
+
+
 app.use(express.json());
 app.listen(port, () => {
   console.log("app is running successfully on port :", port);
 });
+
+
 
 app.use("/", router);
