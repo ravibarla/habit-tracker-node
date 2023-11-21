@@ -7,7 +7,8 @@ import { db } from "./config/mongoose.js";
 
 // import bodyParser from "body-parser";
 const app = express();
-const port = 3100;
+// const port = 3100;
+const port=process.env.PORT||3100
 app.set("view engine", "ejs");
 app.set("views", path.join(path.resolve(), "views"));
 app.use(expressEjsLayouts);
