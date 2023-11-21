@@ -5,6 +5,7 @@ import {
   updateHabits,
 } from "../data/habits.js";
 import random from "../data/randomNumberGenerator.js";
+import { Habits } from "../model/Habits.js";
 export const create = (req, res) => {
   return res.render("_create", {
     title: "create",
@@ -33,16 +34,18 @@ export const created = (req, res) => {
     createdAt: new Date().toLocaleString("en-US"),
     entries: entries,
   };
-  addHabit(newHabit);
 
+  addHabit(newHabit);
   return res.redirect("/");
 };
 
 export const weekView = (req, res) => {
-  return res.render("weekView", {
-    habits: getHabits(),
-    title: "week-view",
-  });
+  Habits.find({}).then((habits) =>
+    res.render("weekView", {
+      habits: habits,
+      title: "week-view",
+    })
+  );
 };
 
 export const deleteHabit = (req, res) => {
@@ -56,9 +59,9 @@ export const deleteHabit = (req, res) => {
 export const updateStatus = (req, res) => {
   const { habitId, entryId, entryStatus } = req.params;
   let newStatus = null;
-  if ((entryStatus == "none")) {
+  if (entryStatus == "none") {
     newStatus = "done";
-  } else if ((entryStatus == "done")) {
+  } else if (entryStatus == "done") {
     newStatus = "not done";
   } else {
     newStatus = "none";

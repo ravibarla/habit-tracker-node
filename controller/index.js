@@ -1,9 +1,10 @@
-import { getHabits, saveInMongo } from "../data/habits.js";
+import { Habits } from "../model/Habits.js";
 
 export const home = (req, res) => {
-  // saveInMongo()
-  res.render("home", {
-    title: "home",
-    habits: getHabits(),
-  });
+  Habits.find({}).then(
+    (habits) => res.render("home", {
+      title: "home",
+      habits: habits,
+    })
+  );
 };
