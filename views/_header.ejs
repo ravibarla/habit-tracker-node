@@ -1,7 +1,7 @@
-<h1>header</h1>
-<div style="display: flex; flex-direction: row; gap: 20px">
+<!-- <h1>habit-tracker</h1> -->
+<!-- <div style="display: flex; flex-direction: row; gap: 20px">
   <a href="/">
-    <p>home</p>
+    <p>Detail View</p>
   </a>
 
   <a href="/create">
@@ -11,4 +11,65 @@
   <a href="/weekView">
     <p>week-view</p>
   </a>
-</div>
+</div> -->
+
+<nav  class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="navbar-brand" href="/">Habit-Tracker-app</a>
+    </li>
+   
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/create">create</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/weekView">week-view</a>
+      </li>
+  
+    </ul>  
+  </div>
+</nav>
+
+<!-- <ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="navbar-brand" href="#">Habit-Tracker-app</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/create">create</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/weekView">week-view</a>
+  </li>
+</ul> -->
+
+<script>
+    $(document).ready(function() {
+    $('.nav-link').on('click', function(e) {
+      e.preventDefault(); // Prevent the default behavior of anchor tags
+      
+      // Remove 'active' class from all nav links
+      $('.nav-link').removeClass('active');
+      
+      // Add 'active' class to the clicked nav link
+      $(this).addClass('active');
+      
+      // Perform the navigation based on the anchor tag's href
+      window.location.href = $(this).attr('href');
+    });
+
+    // Add 'active' class to the appropriate link based on the current URL
+    $('.nav-link').each(function() {
+      if ($(this).attr('href') === window.location.pathname) {
+        $(this).addClass('active');
+      }
+    });
+  });
+
+</script>

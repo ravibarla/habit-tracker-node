@@ -1,33 +1,36 @@
-<h1>week-view</h1>
-<div
-  style="display: flex; flex-direction: column; justify-content: space-around"
->
+<div style="display: flex; flex-direction: column; justify-content: space-around;border:2px solid black">
   <%habits.forEach((habit,i)=>{%>
 
-  <div style="display: flex; flex-direction: row">
-    <p><%=i+1+" . " %></p>
-    <p style="color: red"><%= habit.name %></p>
-  </div>
-  <div style="display: flex; flex-direction: row; gap: 30px">
-    <%habit.entries.forEach(entry=>{%>
+    <div style="display: flex; flex-direction: row;">
+      <p>
+        <%=i+1+" . " %></p>
+    <p style=" color: red">
+          <%= habit.name %>
+      </p>
+    </div>
+    <div style="display: flex; flex-direction: row; gap: 30px;">
+      <%habit.entries.forEach(entry=>{%>
 
-    <p><%=entry.date%></p>
-    <form
-      action="/updateStatus/<%=habit.id%>/<%=entry.id%>/<%=entry.status%>"
-      method="post"
-    >
-      <script>
-        function updateClick(e) {
-          e.preventDefault();
-        }
-      </script>
-      <button type="submit" onclick="updateClick(event)">
-        <%=entry.status%>
-      </button>
-    </form>
 
+
+        <p>
+          <%=entry.date%>
+        </p>
+        <form action="/updateStatus/<%=habit.id%>/<%=entry.id%>/<%=entry.status%>" method="post">
+          <script>
+            function updateClick(e) {
+              e.preventDefault();
+            }
+          </script>
+          <button type="submit" onclick="updateClick(event)">
+            <%=entry.status%>
+          </button>
+        </form>
+
+        <%})%>
+
+    </div>
+    <div style="border-bottom: 1px solid black;"></div>
     <%})%>
-  </div>
-
-  <%})%>
+ 
 </div>
