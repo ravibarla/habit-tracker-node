@@ -1,34 +1,36 @@
-  <%habits.forEach((habit,i)=>{%>
-  <div style="display: flex; flex-direction: column; border: 1px solid black">
-    <div
-      style="
+<%habits.forEach((habit,i)=>{%>
+<div style="display: flex; flex-direction: column; border: 1px solid black">
+    <div style="
         display: flex;
         flex-direction: row;
         gap: 80px;
         color: red;
         justify-content: center;
-      "
-    >
+      ">
       <p>
-        <strong> <%=i+1+"."%> <%= habit.name%> </strong>
+        <strong>
+          <%=i+1+"."%>
+            <%= habit.name%>
+        </strong>
       </p>
-      <p style="color: black"><%=habit.createdAt%></p>
+      <p style="color: black">
+        <%=habit.createdAt.split(",")[1]%>
+      </p>
+      <!-- <p style="color: black"><%=habit.createdAt%></p> -->
     </div>
 
     <br /><br />
-    <div
-      id="habit-status"
-      style="
+    <div id="habit-status" style="
         display: flex;
         flex-direction: row;
         gap: 10px 10px;
         justify-content: space-around;
-      "
-    >
-      <p>1 day</p>
-      <p>38/21</p>
+      ">
+      <!-- <%=console.log(habit.status=="done")%> -->
+      <p>7 day</p>
+      <p>38/7</p>
       <p>daily</p>
-        
+
       <form method="post" action="/destroy/<%=habit.id%>">
         <button type="submit">Delete</button>
       </form>
@@ -36,4 +38,4 @@
   </div>
 
   <%})%>
-</section>
+    </section>
