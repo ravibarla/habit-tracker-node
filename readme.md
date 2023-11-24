@@ -19,7 +19,9 @@ technology used :-
 3. mongodb
 4. mongoose js
 5. ejs template engine
-
+6. css
+7. bootstrap
+   
 deployment platform :-
 
 1. Render
